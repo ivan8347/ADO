@@ -35,7 +35,11 @@ namespace ADO
             // reader.Close();
             // connection.Close();
             Connector connector = new Connector(connection_string);
-            connector.Select(cmd);
+            connector.Select(" title,year,first_name,last_name", "Movies,Directors","director = director_id");
+            Console.WriteLine("\n-------------------------------------------------------------\n");
+
+            //connector.Insert("Directors", "6, N'Tarantino',N'Quentin'");
+            connector.Select("*", "Directors");
         }
     }
 }
