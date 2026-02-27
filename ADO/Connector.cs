@@ -17,7 +17,7 @@ namespace ADO
             this.connection_string = connection_string;
             this.connection = new SqlConnection(connection_string);
         }
-        public void Select(string fileds,string tables,string condition = "")
+        public void Select(string fileds, string tables, string condition = "")
         {
             string cmd = $"SELECT {fileds} FROM {tables}";
             if (condition != "") cmd += $" WHERE {condition}";
@@ -29,17 +29,17 @@ namespace ADO
             {
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    Console.Write(reader[i].ToString().PadRight(29));
+                    Console.Write("  " + reader[i].ToString().PadRight(29));
                 }
                 Console.WriteLine();
             }
             reader.Close();
             connection.Close();
-           
+
         }
-        public void Insert(string table , string values)
+        public void Insert(string table, string values)
         {
-            string cmd = $"INSERT INTO {table} VALUES ({ values})";
+            string cmd = $"INSERT INTO {table} VALUES ({values})";
             connection.Open();
             SqlCommand command = new SqlCommand(cmd, connection);
             command.ExecuteNonQuery();
@@ -47,5 +47,51 @@ namespace ADO
             connection.Close();
 
         }
+        public void Update(string fileds, string tables, string values, string condition)
+        {
+            string cmd = $"UPDATE {fileds} SET {tables} = {values} WHERE {condition}";
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+
+        }
+
+        public void Select(string fullQuery)
+        {
+
+            connection.Open();
+            SqlCommand command = new SqlCommand(fullQuery, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            /*for (int i = 0; i < reader.FieldCount; i++)
+            {
+                Console.Write("| " + reader.GetName(i).PadRight(29));
+            }
+            // Console.WriteLine("|");
+
+            Console.WriteLine(new string('-', (reader.FieldCount * 29)));*/
+
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.Write("  " +  reader[i].ToString().PadRight(29));
+                }
+                Console.WriteLine();
+            }
+            reader.Close();
+            connection.Close();
+        }
+       
+        public void AddPrimaryKey(string table, string column)
+        {
+            string cmd = $"ALTER TABLE {table} ADD CONSTRAINT PK_{table} PRIMARY KEY ({column});";
+
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
     }
 }

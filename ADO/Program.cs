@@ -35,11 +35,26 @@ namespace ADO
             // reader.Close();
             // connection.Close();
             Connector connector = new Connector(connection_string);
-            connector.Select(" title,year,first_name,last_name", "Movies,Directors","director = director_id");
+            connector.Select(" title,year,first_name,last_name", "Movies,Directors", "director = director_id");
             Console.WriteLine("\n-------------------------------------------------------------\n");
 
-            //connector.Insert("Directors", "6, N'Tarantino',N'Quentin'");
-            connector.Select("*", "Directors");
+            //connector.Insert("Directors", "8, N'Иванов',N'Игорь'");
+            connector.Select(" *", "Directors");
+            connector.Update("Directors", "first_name", "N'Иван'", "director_id = 8 ");
+
+            Console.WriteLine("\n-------------------------------------------------------------\n");
+
+            connector.Select
+                (
+                "SELECT \n title, year, first_name, last_name " +
+                "FROM Directors LEFT JOIN Movies ON director = director_id" +
+                " ORDER BY first_name "
+                );
+            Console.WriteLine("\n-------------------------------------------------------------\n");
+
+            //connector.AddPrimaryKey("Directors", "director_id");
+
         }
+
     }
 }
