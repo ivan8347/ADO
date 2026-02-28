@@ -41,12 +41,10 @@ namespace ADO
 
         public void Insert(string cmd)
         {
-
             connection.Open();
             SqlCommand command = new SqlCommand(cmd, connection);
             command.ExecuteNonQuery();
             connection.Close();
-
         }
         public void Insert(string table, string values)
         {
@@ -115,6 +113,24 @@ namespace ADO
         {
             return GetLastPrimaryKey(table) + 1;
         }
+         public void Update(string cmd)
+        {
+            SqlCommand command = new SqlCommand (cmd, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close ();
+
+        }
+        public void Delete(string table, string condition)
+        {
+            string cmd = $"DELETE FROM {table} WHERE {condition};";
+
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
 
     }
 }

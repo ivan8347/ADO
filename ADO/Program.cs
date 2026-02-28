@@ -35,16 +35,25 @@ namespace ADO
             // reader.Close();
             // connection.Close();
             Connector connector = new Connector(connection_string);
-            connector.Select(" title,year,first_name,last_name", "Movies,Directors","director = director_id");
+            connector.Select(" title,year,first_name,last_name", "Movies,Directors", "director = director_id");
             Console.WriteLine("\n-------------------------------------------------------------\n");
 
             string table = "Movies";
-           // Console.WriteLine(connector.Scalar("Select MAX(director_id) FROM Directors"));
-            Console.WriteLine(connector.GetLastPrimaryKey (table));
+            // Console.WriteLine(connector.Scalar("Select MAX(director_id) FROM Directors"));
+            Console.WriteLine(connector.GetLastPrimaryKey(table));
             Console.WriteLine(connector.GetNextPrimaryKey(table));
             Console.WriteLine(connector.GetPrimaryKeyColumn(table));
-           // connector.GetNextPrimaryKey(table);
-            connector.Insert("Directors", $"{connector.GetNextPrimaryKey("Directors")}, N'Besson',N'Luc'");
+            // connector.GetNextPrimaryKey(table);
+            /*  connector.Insert
+                (
+                $"IF NOT EXISTS(SELECT * FROM Directors WHERE last_name = N'Besson' AND first_name = N'Luc')" +
+                $" INSERT Directors VALUES ({connector.GetNextPrimaryKey("Directors")}, N'Scott', N'Gray')"
+                );
+            */
+
+            //connector.Insert("Directors", $"{connector.GetNextPrimaryKey("Directors")}, N'Besson',N'Luc'");
+            //connector.Update("UPDATE Directors SET last_name = N'Lettich', first_name = N'Sheldon' WHERE director_id = 10");
+           // connector.Delete("Directors", "director_id = 13");
             connector.Select("*", "Directors");
             Console.WriteLine("\n-------------------------------------------------------------\n");
             connector.Select(cmd);
