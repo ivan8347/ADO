@@ -38,8 +38,16 @@ namespace ADO
             connector.Select(" title,year,first_name,last_name", "Movies,Directors","director = director_id");
             Console.WriteLine("\n-------------------------------------------------------------\n");
 
-            //connector.Insert("Directors", "6, N'Tarantino',N'Quentin'");
+            string table = "Movies";
+           // Console.WriteLine(connector.Scalar("Select MAX(director_id) FROM Directors"));
+            Console.WriteLine(connector.GetLastPrimaryKey (table));
+            Console.WriteLine(connector.GetNextPrimaryKey(table));
+            Console.WriteLine(connector.GetPrimaryKeyColumn(table));
+           // connector.GetNextPrimaryKey(table);
+            connector.Insert("Directors", $"{connector.GetNextPrimaryKey("Directors")}, N'Besson',N'Luc'");
             connector.Select("*", "Directors");
+            Console.WriteLine("\n-------------------------------------------------------------\n");
+            connector.Select(cmd);
         }
     }
 }
