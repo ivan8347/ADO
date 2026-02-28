@@ -38,8 +38,9 @@ namespace ADO
             connector.Select(" title,year,first_name,last_name", "Movies,Directors", "director = director_id");
             Console.WriteLine("\n-------------------------------------------------------------\n");
 
-            //connector.Insert("Directors", "8, N'Иванов',N'Игорь'");
+            //connector.Insert("Directors", "8, N'Иванов',N'Петя'");
             connector.Select(" *", "Directors");
+
             connector.Update("Directors", "first_name", "N'Вася'", "director_id = 6 ");
 
             Console.WriteLine("\n-------------------------------------------------------------\n");

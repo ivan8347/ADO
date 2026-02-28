@@ -47,6 +47,7 @@ namespace ADO
             connection.Close();
 
         }
+
         public void Update(string fileds, string tables, string values, string condition)
         {
             string cmd = $"UPDATE {fileds} SET {tables} = {values} WHERE {condition}";
@@ -54,7 +55,6 @@ namespace ADO
             SqlCommand command = new SqlCommand(cmd, connection);
             command.ExecuteNonQuery();
             connection.Close();
-
         }
 
         public void Select(string fullQuery)
