@@ -40,7 +40,7 @@ namespace ADO
 
             //connector.Insert("Directors", "8, N'Иванов',N'Игорь'");
             connector.Select(" *", "Directors");
-            connector.Update("Directors", "first_name", "N'Иван'", "director_id = 8 ");
+            connector.Update("Directors", "first_name", "N'Вася'", "director_id = 6 ");
 
             Console.WriteLine("\n-------------------------------------------------------------\n");
 
