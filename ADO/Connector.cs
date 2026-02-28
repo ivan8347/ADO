@@ -130,7 +130,36 @@ namespace ADO
             command.ExecuteNonQuery();
             connection.Close();
         }
+        public void RemoveDuplicates(string table, string column)
+        {
+            string cmd =
+                $"WITH cte AS (" +
+                $" SELECT *, ROW_NUMBER() OVER (PARTITION BY {column} ORDER BY (SELECT NULL)) AS rn" +
+                $" FROM {table}" +
+                $") DELETE FROM cte WHERE rn > 1;";
 
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void InsertUnique(string table,string column, string values)
+        {
+            string cmd = $"INSERT INTO {table} VALUES ({values})";
+            Insert(cmd);
+
+            string removeCmd =
+                $"WITH cte AS (" +
+                $" SELECT *, ROW_NUMBER() OVER (PARTITION BY {column} ORDER BY (SELECT NULL)) AS rn" +
+                $" FROM {table}" +
+                $") DELETE FROM cte WHERE rn > 1;";
+            connection.Open();
+            SqlCommand command = new SqlCommand(removeCmd, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+
+        }
 
     }
 }
