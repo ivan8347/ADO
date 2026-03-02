@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 
 using System.Data.SqlClient;
+using DatabaseTools;
 
 namespace ADO
 {
@@ -50,6 +51,8 @@ namespace ADO
                 $" INSERT Directors VALUES ({connector.GetNextPrimaryKey("Directors")}, N'Scott', N'Gray')"
                 );
             */
+
+            Console.WriteLine("\n-------------------------------------------------------------\n");
             connector.InsertUnique
                 (
                     "Directors",

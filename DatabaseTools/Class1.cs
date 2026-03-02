@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using System.Data.SqlClient;
 
-namespace ADO
+namespace DatabaseTools
 {
-    internal class Connector
+    public class Connector
     {
         string connection_string;
         SqlConnection connection;
@@ -96,7 +96,7 @@ namespace ADO
         }
         public int GetLastPrimaryKey(string table)
         {
-            return Convert.ToInt32(Scalar($"SELECT MAX({GetPrimaryKeyColumn(table)})FROM {table}")) ;
+            return Convert.ToInt32(Scalar($"SELECT MAX({GetPrimaryKeyColumn(table)})FROM {table}"));
             /*(
             $"SELECT CONSTRAINT_NAME" +
             $" FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS" +
@@ -113,12 +113,12 @@ namespace ADO
         {
             return GetLastPrimaryKey(table) + 1;
         }
-         public void Update(string cmd)
+        public void Update(string cmd)
         {
-            SqlCommand command = new SqlCommand (cmd, connection);
+            SqlCommand command = new SqlCommand(cmd, connection);
             connection.Open();
             command.ExecuteNonQuery();
-            connection.Close ();
+            connection.Close();
 
         }
         public void Delete(string table, string condition)
@@ -144,7 +144,7 @@ namespace ADO
             connection.Close();
         }
 
-        public void InsertUnique(string table,string column, string values)
+        public void InsertUnique(string table, string column, string values)
         {
             string cmd = $"INSERT INTO {table} VALUES ({values})";
             Insert(cmd);
