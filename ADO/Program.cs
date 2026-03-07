@@ -26,11 +26,11 @@ namespace IntroductionToADO
             Console.WriteLine(connector.GetNextPrimaryKey(table));
             Console.WriteLine(connector.GetPrimaryKeyColumn(table));
             Console.WriteLine("\n-------------------------------------------------------------\n");
-            connector.Insert
-                (
-                     $"IF NOT EXISTS (SELECT * FROM Directors WHERE last_name=N'Scott' AND first_name=N'Gray') " +
-                     $"INSERT Directors VALUES({connector.GetNextPrimaryKey("Directors")},N'Scott',N'Gray')"
-                );
+            ////connector.Insert
+            ////    (
+            ////         $"IF NOT EXISTS (SELECT * FROM Directors WHERE last_name=N'Scott' AND first_name=N'Gray') " +
+            ////         $"INSERT Directors VALUES({connector.GetNextPrimaryKey("Directors")},N'Scott',N'Gray')"
+            ////    );
             //connector.Insert("Directors", $"{connector.GetNextPrimaryKey("Directors")},N'Besson',N'Luc'");
             connector.Update("UPDATE Directors SET last_name=N'Lettich',first_name=N'Sheldon' WHERE director_id=8");
             connector.Select("*", "Directors");
@@ -42,6 +42,13 @@ namespace IntroductionToADO
             Console.WriteLine(connector.GetPrimaryKey("Directors", "  last_name,  first_name ", "   Cameron  ,  James   "));
             Console.WriteLine(connector.GetPrimaryKey("Movies", "  title,  director ", "The Heat, 5"));
             Console.WriteLine(connector.GetPrimaryKey("Movies", "  title,  year ", "The Heat, 1995-12-15"));
+
+
+            connector.Insert
+                (
+                     $"INSERT Directors(director_id,first_name,last_name) " +
+                     $"VALUES({connector.GetNextPrimaryKey("Directors")},N'Georg',N'Martin')"
+                );
         }
     }
 }
