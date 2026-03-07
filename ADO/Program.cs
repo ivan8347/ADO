@@ -52,19 +52,19 @@ namespace ADO
                 );
             */
 
-            //Console.WriteLine("\n-------------------------------------------------------------\n");
-            //connector.InsertUnique
-            //    (
-            //        "Directors",
-            //        "last_name, first_name",
-            //        $"{connector.GetNextPrimaryKey("Directors")}, N'Besson', N'Luc'"
-            //    );
+            Console.WriteLine("\n-------------------------------------------------------------\n");
+            connector.InsertUnique
+                (
+                    "Directors",
+                    "last_name, first_name",
+                    $"{connector.GetNextPrimaryKey("Directors")}, N'Besson', N'Luc'"
+                );
             connector.Insert("Directors", $"{connector.GetNextPrimaryKey("Directors")}, N'Besson',N'Luc'");
 
 
             //connector.Update("UPDATE Directors SET last_name = N'Lettich', first_name = N'Sheldon' WHERE director_id = 10");
             //connector.Delete("Directors", "director_id = 13");
-             connector.RemoveDuplicates("Directors", "last_name, first_name");
+            // connector.RemoveDuplicates("Directors", "last_name, first_name");
             //connector.RemoveDuplicates("Movies", "title, year");
 
             connector.Select("*", "Directors");
