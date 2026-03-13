@@ -49,6 +49,11 @@ namespace IntroductionToADO
                      $"INSERT Directors(director_id,first_name,last_name) " +
                      $"VALUES({connector.GetNextPrimaryKey("Directors")},N'Georg',N'Martin')"
                 );
+
+
+            //connector.RemoveDuplicates("Directors", "last_name, first_name");
+            //connector.RemoveDuplicates("Movies", "title, year");
+
         }
     }
 }

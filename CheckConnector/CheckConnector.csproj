@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{09619EFC-90C0-4719-9DC6-433798B017AE}</ProjectGuid>
+    <ProjectGuid>{432BF533-34EC-4A58-8FB7-6247637C196B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ADO</RootNamespace>
-    <AssemblyName>ADO</AssemblyName>
+    <RootNamespace>CheckConnector</RootNamespace>
+    <AssemblyName>CheckConnector</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Connector\Connector.csproj">
+      <Project>{2f024a7e-088b-46f6-bc11-fc1c3384e158}</Project>
+      <Name>Connector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
