@@ -18,26 +18,54 @@ namespace IntroductionToADO
             this.connection_string = connection_string;
             this.connection = new SqlConnection(connection_string);
         }
+        /*  public void Select(string cmd)
+          {
+              connection.Open();
+              SqlCommand command = new SqlCommand(cmd, connection);
+              SqlDataReader reader = command.ExecuteReader();
+              while (reader.Read())
+              {
+                  //Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}");
+                  for (int i = 0; i < reader.FieldCount; i++)
+                  {
+                      Console.Write(reader[i].ToString().PadRight(29));
+                  }
+                  Console.WriteLine();
+              }
+              reader.Close();
+              connection.Close();
+          }*/
         public void Select(string cmd)
         {
+            SqlResult parsed = SqlParser.ParseSelect(cmd);
 
+            Console.WriteLine("TABLE: " + parsed.Table);
+            Console.WriteLine("FIELDS: " + parsed.Fields);
 
+            if (!string.IsNullOrEmpty(parsed.Join))
+                Console.WriteLine("JOIN: " + parsed.Join);
+
+            if (!string.IsNullOrEmpty(parsed.Condition))
+                Console.WriteLine("WHERE: " + parsed.Condition);
+
+            if (!string.IsNullOrEmpty(parsed.OrderBy))
+                Console.WriteLine("ORDER BY: " + parsed.OrderBy);
 
             connection.Open();
-            SqlCommand command = new SqlCommand(cmd, connection);
+            SqlCommand command = new SqlCommand(parsed.Raw, connection);
             SqlDataReader reader = command.ExecuteReader();
+
             while (reader.Read())
             {
-                //Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}");
                 for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Console.Write(reader[i].ToString().PadRight(29));
-                }
+                    Console.Write(reader[i] + " ");
                 Console.WriteLine();
             }
-            reader.Close();
+
             connection.Close();
         }
+
+
         public void Select(string fields, string tables, string condition = "")
         {
             string cmd = $"SELECT {fields} FROM {tables}";
@@ -61,29 +89,40 @@ namespace IntroductionToADO
             return parts[3];
         }*/
 
+        /* public void Insert(string cmd)
+         {
+             Console.WriteLine(cmd);
+             string table    = SqlParser.GetTableFromInsert(cmd);
+             string fields   = SqlParser.GetFieldsFromInsert(cmd);
+             string values   = SqlParser.GetValuesFromInsert(cmd);
+
+             Console.WriteLine(cmd);
+             Console.WriteLine(table);
+             Console.WriteLine(fields);
+             Console.WriteLine(values);
+
+             //Console.WriteLine(GetTableFromInsert(cmd));
+             //Console.WriteLine(GetFieldsFromInsert(cmd));
+             //Console.WriteLine(GetValuesFromInsert(cmd));
+             //if (GetPrimaryKey(GetTableFromInsert(cmd), GetFieldsFromInsert(cmd), GetValuesFromInsert(cmd)) != null) return;
+
+             if (GetPrimaryKey(table, fields, values) != null) return;
+
+             connection.Open();
+             SqlCommand command = new SqlCommand(cmd, connection);
+             command.ExecuteNonQuery();
+             connection.Close();
+         }*/
+
         public void Insert(string cmd)
         {
-            Console.WriteLine(cmd);
-            string table    = SqlParser.GetTableFromInsert(cmd);
-            string fields   = SqlParser.GetFieldsFromInsert(cmd);
-            string values   = SqlParser.GetValuesFromInsert(cmd);
-
-            Console.WriteLine(cmd);
-            Console.WriteLine(table);
-            Console.WriteLine(fields);
-            Console.WriteLine(values);
-
-            /*Console.WriteLine(GetTableFromInsert(cmd));
-            Console.WriteLine(GetFieldsFromInsert(cmd));
-            Console.WriteLine(GetValuesFromInsert(cmd));
-            if (GetPrimaryKey(GetTableFromInsert(cmd), GetFieldsFromInsert(cmd), GetValuesFromInsert(cmd)) != null) return;*/
-
-            if (GetPrimaryKey(table, fields, values) != null) return;
-
+            SqlResult parsed = SqlParser.ParseInsert(cmd);
+            if (GetPrimaryKey(parsed.Table, parsed.Fields, parsed.Values) != null)
+                return;
             connection.Open();
-            SqlCommand command = new SqlCommand(cmd, connection);
-            command.ExecuteNonQuery();
+            new SqlCommand(parsed.Raw,connection).ExecuteNonQuery();
             connection.Close();
+            
         }
         public void Insert(string table, string values)
         {
@@ -144,26 +183,41 @@ namespace IntroductionToADO
         {
             return GetLastPrimaryKey(table) + 1;
         }
-
         public void Update(string cmd)
         {
-            SqlCommand command = new SqlCommand(cmd, connection);            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
-       /* public void RemoveDuplicates(string table, string column)
-        {
-            string cmd =
-                $"WITH cte AS (" +
-                $" SELECT *, ROW_NUMBER() OVER (PARTITION BY {column} ORDER BY (SELECT NULL)) AS rn" +
-                $" FROM {table}" +
-                $") DELETE FROM cte WHERE rn > 1;";
+            SqlResult parsed = SqlParser.ParseUpdate(cmd);
 
             connection.Open();
-            SqlCommand command = new SqlCommand(cmd, connection);
-            command.ExecuteNonQuery();
+            new SqlCommand(parsed.Raw, connection).ExecuteNonQuery();
             connection.Close();
-        }*/
+        }
+        public void Delete(string cmd)
+        {
+            SqlResult parsed = SqlParser.ParseDelete(cmd);
+
+            connection.Open();
+            new SqlCommand(parsed.Raw, connection).ExecuteNonQuery();
+            connection.Close();
+        }
+        /*public void Update(string cmd)
+                {
+                    SqlCommand command = new SqlCommand(cmd, connection);            connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }*/
+        /* public void RemoveDuplicates(string table, string column)
+         {
+             string cmd =
+                 $"WITH cte AS (" +
+                 $" SELECT *, ROW_NUMBER() OVER (PARTITION BY {column} ORDER BY (SELECT NULL)) AS rn" +
+                 $" FROM {table}" +
+                 $") DELETE FROM cte WHERE rn > 1;";
+
+             connection.Open();
+             SqlCommand command = new SqlCommand(cmd, connection);
+             command.ExecuteNonQuery();
+             connection.Close();
+         }*/
 
     }
 }
