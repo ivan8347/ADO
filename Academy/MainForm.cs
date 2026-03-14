@@ -18,10 +18,15 @@ namespace Academy
         {
             InitializeComponent();
             connector = new DBtools.Connector("Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-           // movies_connector = new DBtools.Connector("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_SPU_411;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-          // dgvDirections.DataSource = movies_connector.Select("SELECT * FROM Directors");
-           dgvDirections.DataSource = connector.Select("SELECT * FROM Directions");
-            toolStripStatusLabel.Text = $"Количество направлений обучения :(dgvDirections.RowCount - 1)";
+            // movies_connector = new DBtools.Connector("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_SPU_411;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            // dgvDirections.DataSource = movies_connector.Select("SELECT * FROM Directors");
+        }
+        
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvDirections.DataSource = connector.Select("SELECT * FROM Directions");
+            toolStripStatusLabel.Text = $"Количество направлений обучения:{dgvDirections.RowCount - 1}";
+
         }
     }
 }
