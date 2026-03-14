@@ -16,6 +16,7 @@ namespace CheckConnector
             string connection_string = "Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             Connector.Connector connector = new Connector.Connector(connection_string);
             connector.Select("SELECT * FROM Directions");
+            connector.Select("SELECT * FROM Teachers");
 
         }
     }

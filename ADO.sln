@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector", "Connector\Conn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckConnector", "CheckConnector\CheckConnector.csproj", "{432BF533-34EC-4A58-8FB7-6247637C196B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{95BDD059-03E3-456B-9F6B-C9039B492708}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{432BF533-34EC-4A58-8FB7-6247637C196B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{432BF533-34EC-4A58-8FB7-6247637C196B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{432BF533-34EC-4A58-8FB7-6247637C196B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95BDD059-03E3-456B-9F6B-C9039B492708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BDD059-03E3-456B-9F6B-C9039B492708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BDD059-03E3-456B-9F6B-C9039B492708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95BDD059-03E3-456B-9F6B-C9039B492708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
