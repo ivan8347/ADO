@@ -20,7 +20,7 @@ namespace Academy
         }
         public override string ToString()
         {
-            string cmd = $"SELECT{Fields} FRON {Tables}";
+            string cmd = $"SELECT {Fields} FROM {Tables}";
             if (Condition != "" && Condition != " ") cmd += $" WHERE {Condition}";
             cmd += ";";
             return cmd;
