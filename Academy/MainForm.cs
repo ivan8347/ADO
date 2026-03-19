@@ -28,7 +28,15 @@ namespace Academy
                 "direction = direction_id"
                 ),
             new Query ("Directions", "*"),
-            new Query ("Disciplines","*"),
+            //new Query ("Disciplines","*"),
+            new Query
+                (
+                "Disciplines, Directions, DisciplinesDirectionsRelation",
+                "discipline_name, direction_name",
+                "Disciplines.discipline_id = DisciplinesDirectionsRelation.discipline " +
+                "AND Directions.direction_id = DisciplinesDirectionsRelation.direction"
+                 ),
+
             new Query ("Teachers","*")
 
         };
@@ -49,7 +57,7 @@ namespace Academy
         {
             InitializeComponent();
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
-            AllocConsole();
+            // AllocConsole();
             connector = new DBtools.Connector("Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             // movies_connector = new DBtools.Connector("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_SPU_411;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             // dgvDirections.DataSource = movies_connector.Select("SELECT * FROM Directors");
@@ -57,6 +65,31 @@ namespace Academy
         }
         [DllImport("kernel32.dll")]
         public static extern bool AllocConsole();
+        //GROUP
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            DataTable dataTable = connector.Select("SELECT direction_id, direction_name FROM Directions");
+
+            DataRow emptyRow = dataTable.NewRow();
+            emptyRow["direction_id"] = DBNull.Value;
+            emptyRow["direction_name"] = "";   // или "Все направления"
+            dataTable.Rows.InsertAt(emptyRow, 0);
+
+
+            cbDirectionsFilter.DataSource = dataTable;
+            cbDirectionsFilter.DisplayMember = "direction_name";
+            cbDirectionsFilter.ValueMember = "direction_id";
+            cbDirectionsFilter.SelectedIndex = 0;
+
+            cbDisciplinesFilter.DataSource = dataTable.Copy(); 
+            cbDisciplinesFilter.DisplayMember = "direction_name";
+            cbDisciplinesFilter.ValueMember = "direction_id";
+            cbDirectionsFilter.SelectedIndex = 0;
+
+            cbDirectionsFilter.SelectedIndex = -1; 
+        }
+
+
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Console.WriteLine($"{(sender as TabControl).SelectedIndex} \t{tabControl.SelectedTab.Text}");
@@ -68,8 +101,67 @@ namespace Academy
             toolStripStatusLabel.Text = $"Количество записей:{dgv.RowCount - 1}";*/
 
             int i = tabControl.SelectedIndex;
+            if (i == 1)
+            {
+                ApplyGroupsFilter();
+                return;
+            }
+            if (i == 3)
+            {
+                ApplyDisciplinesFilter();
+                return;
+            }
+
+
             tables[i].DataSource = connector.Select(queries[i].ToString());
             toolStripStatusLabel.Text = $"{statusBarSignatures[i]}: {tables[i].RowCount - 1}";
         }
+
+
+
+        private void ApplyFilter(DataGridView dgv, Query query, ComboBox cb, string filterField, int tabIndex)
+
+        {
+            string statusText = statusBarSignatures[tabIndex];
+            if (cb.SelectedIndex == -1 || cb.SelectedValue == null || cb.SelectedValue == DBNull.Value)
+            {
+                dgv.DataSource = connector.Select(query.ToString());
+                toolStripStatusLabel.Text = $"{statusText} {dgv.RowCount - 1}";
+                return;
+            }
+
+            int directionId = Convert.ToInt32(cb.SelectedValue);
+
+            string sql =
+                $"SELECT {query.Fields} " +
+                $"FROM {query.Tables} " +
+                $"WHERE {query.Condition} AND {filterField} = {directionId}";
+
+            dgv.DataSource = connector.Select(sql);
+            toolStripStatusLabel.Text = $"{statusText} {dgv.RowCount - 1}";
+        }
+
+
+        private void ApplyGroupsFilter()
+        {
+            ApplyFilter(dgvGroups, queries[1], cbDirectionsFilter, "direction_id", 1);
+        }
+
+
+        private void ApplyDisciplinesFilter()
+        {
+            ApplyFilter( dgvDisciplines, queries[3], cbDisciplinesFilter, "Directions.direction_id", 3 );
+        }
+ 
+        private void cbDirectionsFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedIndex == 1)
+                ApplyGroupsFilter();
+
+            if (tabControl.SelectedIndex == 3)
+                ApplyDisciplinesFilter();
+        }
+
+       
     }
 }

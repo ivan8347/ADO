@@ -33,12 +33,16 @@
             this.tabPageStudents = new System.Windows.Forms.TabPage();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.tabPageGroups = new System.Windows.Forms.TabPage();
+            this.cbDirectionsFilter = new System.Windows.Forms.ComboBox();
             this.dgvGroups = new System.Windows.Forms.DataGridView();
             this.tabPageDirections = new System.Windows.Forms.TabPage();
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
+            this.cbDisciplinesFilter = new System.Windows.Forms.ComboBox();
             this.dgvDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -99,6 +103,7 @@
             // 
             // tabPageGroups
             // 
+            this.tabPageGroups.Controls.Add(this.cbDirectionsFilter);
             this.tabPageGroups.Controls.Add(this.dgvGroups);
             this.tabPageGroups.Location = new System.Drawing.Point(4, 29);
             this.tabPageGroups.Name = "tabPageGroups";
@@ -107,6 +112,15 @@
             this.tabPageGroups.TabIndex = 2;
             this.tabPageGroups.Text = "Groups";
             this.tabPageGroups.UseVisualStyleBackColor = true;
+            // 
+            // cbDirectionsFilter
+            // 
+            this.cbDirectionsFilter.FormattingEnabled = true;
+            this.cbDirectionsFilter.Location = new System.Drawing.Point(8, 3);
+            this.cbDirectionsFilter.Name = "cbDirectionsFilter";
+            this.cbDirectionsFilter.Size = new System.Drawing.Size(437, 28);
+            this.cbDirectionsFilter.TabIndex = 3;
+            this.cbDirectionsFilter.SelectedIndexChanged += new System.EventHandler(this.cbDirectionsFilter_SelectedIndexChanged);
             // 
             // dgvGroups
             // 
@@ -151,6 +165,7 @@
             // 
             // tabPageDisciplines
             // 
+            this.tabPageDisciplines.Controls.Add(this.cbDisciplinesFilter);
             this.tabPageDisciplines.Controls.Add(this.dgvDisciplines);
             this.tabPageDisciplines.Location = new System.Drawing.Point(4, 29);
             this.tabPageDisciplines.Name = "tabPageDisciplines";
@@ -159,6 +174,15 @@
             this.tabPageDisciplines.TabIndex = 4;
             this.tabPageDisciplines.Text = "Disciplines";
             this.tabPageDisciplines.UseVisualStyleBackColor = true;
+            // 
+            // cbDisciplinesFilter
+            // 
+            this.cbDisciplinesFilter.FormattingEnabled = true;
+            this.cbDisciplinesFilter.Location = new System.Drawing.Point(8, 6);
+            this.cbDisciplinesFilter.Name = "cbDisciplinesFilter";
+            this.cbDisciplinesFilter.Size = new System.Drawing.Size(464, 28);
+            this.cbDisciplinesFilter.TabIndex = 2;
+            this.cbDisciplinesFilter.SelectedIndexChanged += new System.EventHandler(this.cbDirectionsFilter_SelectedIndexChanged);
             // 
             // dgvDisciplines
             // 
@@ -177,6 +201,8 @@
             // 
             // tabPageTeachers
             // 
+            this.tabPageTeachers.Controls.Add(this.comboBox2);
+            this.tabPageTeachers.Controls.Add(this.comboBox1);
             this.tabPageTeachers.Controls.Add(this.dgvTeachers);
             this.tabPageTeachers.Location = new System.Drawing.Point(4, 29);
             this.tabPageTeachers.Name = "tabPageTeachers";
@@ -185,6 +211,22 @@
             this.tabPageTeachers.TabIndex = 5;
             this.tabPageTeachers.Text = "Teachers";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(53, 6);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 28);
+            this.comboBox2.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(468, 9);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 28);
+            this.comboBox1.TabIndex = 2;
             // 
             // dgvTeachers
             // 
@@ -230,6 +272,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Academy SPU_411";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPageStudents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).EndInit();
@@ -263,6 +306,10 @@
         private  System.Windows.Forms.DataGridView dgvGroups;
         private  System.Windows.Forms.DataGridView dgvDisciplines;
         private System.Windows.Forms.DataGridView dgvTeachers;
+        private System.Windows.Forms.ComboBox cbDirectionsFilter;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbDisciplinesFilter;
     }
 }
 
