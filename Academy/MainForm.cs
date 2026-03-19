@@ -18,7 +18,7 @@ namespace Academy
             new Query
                 (
                 "Students,Groups,Directions",
-                "last_name,first_name,middle_name,direction_name",
+                "last_name,first_name,middle_name,group_name,direction_name",
                 "[group] = group_id AND direction = direction_id"
                 ),
             new Query
@@ -30,7 +30,7 @@ namespace Academy
             new Query ("Directions", "*"),
             new Query ("Disciplines","*"),
             new Query ("Teachers","*")
-                
+
         };
         string[] statusBarSignatures =
         {
@@ -48,7 +48,7 @@ namespace Academy
         public MainForm()
         {
             InitializeComponent();
-            tables = new DataGridView[] {dgvStudents,dgvGroups,dgvDirections,dgvDisciplines,dgvTeachers};
+            tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             AllocConsole();
             connector = new DBtools.Connector("Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             // movies_connector = new DBtools.Connector("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_SPU_411;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
