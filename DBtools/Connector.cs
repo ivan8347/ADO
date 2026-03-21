@@ -18,6 +18,33 @@ namespace DBtools
             this.connection_string = connection_string;
             this.connection = new SqlConnection(connection_string);
         }
+
+
+        public Dictionary<string, int> GetDictionary(string fields, string tables, string condition = "")
+        {
+            Dictionary<string, int> values = new Dictionary<string, int>();
+
+            string cmd = $"SELECT {fields} FROM {tables}";
+            if (!string.IsNullOrWhiteSpace(condition))
+                cmd += $" WHERE {condition}";
+
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    values[reader[1].ToString()] = Convert.ToInt32(reader[0]);
+                }
+            }
+
+            reader.Close();
+            connection.Close();
+            return values;
+        }
+
         public DataTable Select(string cmd)
         {
             DataTable table = new DataTable();

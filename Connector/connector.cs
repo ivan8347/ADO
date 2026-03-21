@@ -18,6 +18,26 @@ namespace Connector
             this.connection_string = connection_string;
             this.connection = new SqlConnection(connection_string);
         }
+
+        public Dictionary<string, int> GetDictionary(string tables, string fields)
+        {
+            Dictionary<string, int> values = new Dictionary<string, int>();
+            string cmd = $"SELECT {fields} FROM {tables}";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    values[reader[1].ToString()] = Convert.ToInt32(reader[0]);
+                }
+            }
+            reader.Close();
+            connection.Close();
+            return values;
+        }
+
         public DataTable Select(string cmd)
         {
             DataTable table = new DataTable();
@@ -43,11 +63,12 @@ namespace Connector
             connection.Close();
             return table;
         }
-        public DataTable Select(string fields, string tables, string condition = "")
+        public DataTable Select(string fields, string tables, string condition = "",string group_by = "")
         {
 
             string cmd = $"SELECT {fields} FROM {tables}";
             if (condition != "") cmd += $" WHERE {condition}";
+            if (group_by != "") cmd += $" GROUP BY {group_by}";
             cmd += ";";
             return Select(cmd);
         }
