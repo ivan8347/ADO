@@ -45,7 +45,7 @@ namespace Academy
         DBtools.Connector connector;
         //DBtools.Connector movies_connector;
         DataGridView[] tables = null;
-       
+
         /// ////////////////////////// <summary>
         /// //////////////////////////
         /// </summary>
@@ -77,8 +77,8 @@ namespace Academy
             Console.WriteLine(table);
             Console.WriteLine(dictionary_name);
             Console.WriteLine("\n----------------------------------------\n");
-            d_trees [dictionary_name] =  connector.LoadDictionary(table);
-            foreach(KeyValuePair<string,int> i in d_trees [dictionary_name])
+            d_trees[dictionary_name] = connector.LoadDictionary(table);
+            foreach (KeyValuePair<string, int> i in d_trees[dictionary_name])
             {
                 comboBox.Items.Add(i.Key);
             }
@@ -98,6 +98,16 @@ namespace Academy
             toolStripStatusLabel.Text = $"{statusBarSignatures[i]}: {tables[i].RowCount - 1}";
         }
 
-       
+        private void cbGroupsDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbGroupsDirection.SelectedIndex != -1)
+                tables[1].DataSource = connector.Select
+                    (
+                    queries[1].ToString() +
+                    $" AND direction = {d_trees["d_directions"][cbGroupsDirection.SelectedItem.ToString()]}"
+                    );
+
+
+        }
     }
 }
