@@ -18,7 +18,7 @@ namespace Academy
             new Query
                 (
                 "Students,Groups,Directions",
-                "last_name,first_name,middle_name,group_name,direction_name",
+                "group_id,last_name,first_name,middle_name,group_name,direction_name",
                 "[group] = group_id AND direction = direction_id"
                 ),
             new Query
@@ -45,18 +45,44 @@ namespace Academy
         DBtools.Connector connector;
         //DBtools.Connector movies_connector;
         DataGridView[] tables = null;
+       
+        /// ////////////////////////// <summary>
+        /// //////////////////////////
+        /// </summary>
+        Dictionary<string, int> d_directions = null;
+        Dictionary<string, Dictionary<string, int>> d_trees = null;
         public MainForm()
         {
             InitializeComponent();
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             AllocConsole();
             connector = new DBtools.Connector("Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            // movies_connector = new DBtools.Connector("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_SPU_411;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            // dgvDirections.DataSource = movies_connector.Select("SELECT * FROM Directors");
+
             tabControl_SelectedIndexChanged(tabControl, null);
+
+            d_trees = new Dictionary<string, Dictionary<string, int>>();
+            d_trees.Add(nameof(d_directions), d_directions);
+            LoadDataToComboBox(cbGroupsDirection);
+            LoadDataToComboBox(cbStudentsGroup);
+            LoadDataToComboBox(cbStudentsDirection);
+            LoadDataToComboBox(cbDisciplinesDirection);
         }
         [DllImport("kernel32.dll")]
         public static extern bool AllocConsole();
+        void LoadDataToComboBox(ComboBox comboBox)
+        {
+            string table = comboBox.Name.Substring(Array.FindLastIndex<char>(comboBox.Name.ToCharArray(), Char.IsUpper)) + "s";
+            string dictionary_name = $"d_{table}".ToLower();
+            Console.WriteLine("\n----------------------------------------\n");
+            Console.WriteLine(table);
+            Console.WriteLine(dictionary_name);
+            Console.WriteLine("\n----------------------------------------\n");
+            d_trees [dictionary_name] =  connector.LoadDictionary(table);
+            foreach(KeyValuePair<string,int> i in d_trees [dictionary_name])
+            {
+                comboBox.Items.Add(i.Key);
+            }
+        }
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Console.WriteLine($"{(sender as TabControl).SelectedIndex} \t{tabControl.SelectedTab.Text}");
@@ -71,5 +97,7 @@ namespace Academy
             tables[i].DataSource = connector.Select(queries[i].ToString());
             toolStripStatusLabel.Text = $"{statusBarSignatures[i]}: {tables[i].RowCount - 1}";
         }
+
+       
     }
 }
