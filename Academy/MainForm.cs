@@ -81,6 +81,7 @@ namespace Academy
             cbStudentsGroup.Items.AddRange(d_groups.Select(g => g.Key).ToArray());
             cbStudentsGroup.Items.Insert(0,"Все группы");
             cbStudentsDirection.Items.Insert(0,"Все направления");
+          //  cbGroupsDirection.Items.Insert(0,"Все направления");
             cbStudentsDirection.SelectedIndex = cbStudentsGroup.SelectedIndex = 0;
 
             tabControl_SelectedIndexChanged(tabControl, null);
