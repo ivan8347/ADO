@@ -40,12 +40,12 @@
             this.tabPageDirections = new System.Windows.Forms.TabPage();
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
+            this.cbDisciplinesDirection = new System.Windows.Forms.ComboBox();
             this.dgvDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
             this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbDisciplinesDirection = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -106,6 +106,7 @@
             this.cbStudentsDirection.Name = "cbStudentsDirection";
             this.cbStudentsDirection.Size = new System.Drawing.Size(472, 28);
             this.cbStudentsDirection.TabIndex = 1;
+            this.cbStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.cbStudentsDirection_SelectedIndexChanged);
             // 
             // dgvStudents
             // 
@@ -198,6 +199,16 @@
             this.tabPageDisciplines.Text = "Disciplines";
             this.tabPageDisciplines.UseVisualStyleBackColor = true;
             // 
+            // cbDisciplinesDirection
+            // 
+            this.cbDisciplinesDirection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbDisciplinesDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDisciplinesDirection.FormattingEnabled = true;
+            this.cbDisciplinesDirection.Location = new System.Drawing.Point(545, 6);
+            this.cbDisciplinesDirection.Name = "cbDisciplinesDirection";
+            this.cbDisciplinesDirection.Size = new System.Drawing.Size(376, 28);
+            this.cbDisciplinesDirection.TabIndex = 2;
+            // 
             // dgvDisciplines
             // 
             this.dgvDisciplines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -255,16 +266,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(188, 28);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel";
-            // 
-            // cbDisciplinesDirection
-            // 
-            this.cbDisciplinesDirection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbDisciplinesDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDisciplinesDirection.FormattingEnabled = true;
-            this.cbDisciplinesDirection.Location = new System.Drawing.Point(545, 6);
-            this.cbDisciplinesDirection.Name = "cbDisciplinesDirection";
-            this.cbDisciplinesDirection.Size = new System.Drawing.Size(376, 28);
-            this.cbDisciplinesDirection.TabIndex = 2;
             // 
             // MainForm
             // 
