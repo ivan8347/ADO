@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DBtools;
+using System.Configuration;
 namespace Academy
+
 {
     public partial class MainForm : Form
     {
@@ -56,8 +58,8 @@ namespace Academy
             InitializeComponent();
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             AllocConsole();
-            connector = new DBtools.Connector("Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
+            //connector = new DBtools.Connector( "Data Source=KIT1\\SQLEXPRESS;Initial Catalog=SPU_411_Import;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            connector = new Connector(ConfigurationManager.ConnectionStrings["SPU_411_Import"].ConnectionString);
             tabControl_SelectedIndexChanged(tabControl, null);
 
             d_trees = new Dictionary<string, Dictionary<string, int>>();
@@ -117,16 +119,21 @@ namespace Academy
 
             dgvStudents.DataSource = connector.Select(queries[0].ToString() +
                 $" AND direction = {d_trees["d_directions"][cbStudentsDirection.SelectedItem.ToString()]}");
-            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}:{dgvStudents.RowCount - 1}";
+            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}: {dgvStudents.RowCount - 1}";
         }
 
         private void cbStudentsGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvStudents.DataSource = connector.Select(queries[0].ToString() +
                 $" AND [group] = {d_trees["d_groups"][cbStudentsGroup.SelectedItem.ToString()]}");
-            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}:{dgvStudents.RowCount - 1}";
+            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}: {dgvStudents.RowCount - 1}";
         }
 
-      
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            StudentForm form = new StudentForm();
+            form.ShowDialog();
+
+        }
     }
 }
