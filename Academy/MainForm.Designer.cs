@@ -40,12 +40,14 @@
             this.tabPageDirections = new System.Windows.Forms.TabPage();
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
+            this.cbDisciplinesDirection = new System.Windows.Forms.ComboBox();
             this.dgvDisciplines = new System.Windows.Forms.DataGridView();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
+            this.cbTeachersDiscipline = new System.Windows.Forms.ComboBox();
+            this.cbTeachersTeacher = new System.Windows.Forms.ComboBox();
             this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbDisciplinesDirection = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -96,6 +98,7 @@
             this.cbStudentsGroup.Name = "cbStudentsGroup";
             this.cbStudentsGroup.Size = new System.Drawing.Size(183, 28);
             this.cbStudentsGroup.TabIndex = 2;
+            this.cbStudentsGroup.SelectedIndexChanged += new System.EventHandler(this.cbStudentsGroup_SelectedIndexChanged);
             // 
             // cbStudentsDirection
             // 
@@ -106,6 +109,7 @@
             this.cbStudentsDirection.Name = "cbStudentsDirection";
             this.cbStudentsDirection.Size = new System.Drawing.Size(472, 28);
             this.cbStudentsDirection.TabIndex = 1;
+            this.cbStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.cbStudentsDirection_SelectedIndexChanged);
             // 
             // dgvStudents
             // 
@@ -198,6 +202,17 @@
             this.tabPageDisciplines.Text = "Disciplines";
             this.tabPageDisciplines.UseVisualStyleBackColor = true;
             // 
+            // cbDisciplinesDirection
+            // 
+            this.cbDisciplinesDirection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbDisciplinesDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDisciplinesDirection.FormattingEnabled = true;
+            this.cbDisciplinesDirection.Location = new System.Drawing.Point(545, 6);
+            this.cbDisciplinesDirection.Name = "cbDisciplinesDirection";
+            this.cbDisciplinesDirection.Size = new System.Drawing.Size(376, 28);
+            this.cbDisciplinesDirection.TabIndex = 2;
+            this.cbDisciplinesDirection.SelectedIndexChanged += new System.EventHandler(this.cbDisciplinesDirection_SelectedIndexChanged);
+            // 
             // dgvDisciplines
             // 
             this.dgvDisciplines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -215,6 +230,8 @@
             // 
             // tabPageTeachers
             // 
+            this.tabPageTeachers.Controls.Add(this.cbTeachersDiscipline);
+            this.tabPageTeachers.Controls.Add(this.cbTeachersTeacher);
             this.tabPageTeachers.Controls.Add(this.dgvTeachers);
             this.tabPageTeachers.Location = new System.Drawing.Point(4, 29);
             this.tabPageTeachers.Name = "tabPageTeachers";
@@ -223,6 +240,26 @@
             this.tabPageTeachers.TabIndex = 5;
             this.tabPageTeachers.Text = "Teachers";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
+            // 
+            // cbTeachersDiscipline
+            // 
+            this.cbTeachersDiscipline.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTeachersDiscipline.FormattingEnabled = true;
+            this.cbTeachersDiscipline.Location = new System.Drawing.Point(8, 6);
+            this.cbTeachersDiscipline.Name = "cbTeachersDiscipline";
+            this.cbTeachersDiscipline.Size = new System.Drawing.Size(381, 28);
+            this.cbTeachersDiscipline.TabIndex = 3;
+            this.cbTeachersDiscipline.SelectedIndexChanged += new System.EventHandler(this.cbTeachersDiscipline_SelectedIndexChanged);
+            // 
+            // cbTeachersTeaherDiscipline
+            // 
+            this.cbTeachersTeacher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTeachersTeacher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTeachersTeacher.FormattingEnabled = true;
+            this.cbTeachersTeacher.Location = new System.Drawing.Point(547, 7);
+            this.cbTeachersTeacher.Name = "cbTeachersTeaherDiscipline";
+            this.cbTeachersTeacher.Size = new System.Drawing.Size(374, 28);
+            this.cbTeachersTeacher.TabIndex = 2;
             // 
             // dgvTeachers
             // 
@@ -255,16 +292,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(188, 28);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel";
-            // 
-            // cbDisciplinesDirection
-            // 
-            this.cbDisciplinesDirection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbDisciplinesDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDisciplinesDirection.FormattingEnabled = true;
-            this.cbDisciplinesDirection.Location = new System.Drawing.Point(545, 6);
-            this.cbDisciplinesDirection.Name = "cbDisciplinesDirection";
-            this.cbDisciplinesDirection.Size = new System.Drawing.Size(376, 28);
-            this.cbDisciplinesDirection.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -315,6 +342,8 @@
         private System.Windows.Forms.ComboBox cbStudentsGroup;
         private System.Windows.Forms.ComboBox cbStudentsDirection;
         private System.Windows.Forms.ComboBox cbDisciplinesDirection;
+        private System.Windows.Forms.ComboBox cbTeachersDiscipline;
+        private System.Windows.Forms.ComboBox cbTeachersTeacher;
     }
 }
 
