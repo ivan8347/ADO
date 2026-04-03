@@ -25,11 +25,21 @@ namespace Academy
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-          DBtools.Connector connector = new DBtools.
-                Connector(ConfigurationManager.ConnectionStrings["SPU_411_Import"].ConnectionString);
-            connector.Insert(
-                $"INSERT Students (last_name,first_name,middle_name,birth_date[group])"+
-                $" N'{rtbLastName.Text}',N'{rtbFirstName.Text}',N'{rtbMiddleName.Text}',N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}',N'',N'',N'',{1}");
+            DBtools.Connector connector = new DBtools.
+                  Connector(ConfigurationManager.ConnectionStrings["SPU_411_Import"].ConnectionString);
+
+            DataTable dataTable = connector.Select
+                (
+                $"SELECT group_id FROM Groups WHERE group_name = N'{rtbGroup.Text}'"
+                );
+            int group_id = Convert.ToInt32(dataTable.Rows[0]["group_id"]);
+
+            connector.Insert
+               (
+               $"INSERT Students(last_name,first_name,middle_name,birth_date,[group]) " +
+               $"VALUES (N'{rtbLastName.Text}',N'{rtbFirstName.Text}',N'{rtbMiddleName.Text}',N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}'," +
+               $"N'{group_id}')"
+               );
         }
     }
 }

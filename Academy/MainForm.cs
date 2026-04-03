@@ -20,7 +20,7 @@ namespace Academy
             new Query
                 (
                 "Students,Groups,Directions",
-                "group_id,last_name,first_name,middle_name,group_name,direction_name",
+                "group_id,last_name,first_name,middle_name,group_name,direction_name,photo",
                 "[group] = group_id AND direction = direction_id"
                 ),
             new Query

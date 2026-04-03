@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lb = new System.Windows.Forms.Label();
-            this.richTextBoxGroup = new System.Windows.Forms.RichTextBox();
+            this.rtbGroup = new System.Windows.Forms.RichTextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
@@ -43,8 +43,6 @@
             // 
             this.buttonPhoto.Location = new System.Drawing.Point(766, 297);
             // 
-          
-            
             // lb
             // 
             this.lb.AutoSize = true;
@@ -55,15 +53,15 @@
             this.lb.TabIndex = 11;
             this.lb.Text = "Группа:";
             // 
-            // richTextBoxGroup
+            // rtbGroup
             // 
-            this.richTextBoxGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.richTextBoxGroup.Location = new System.Drawing.Point(338, 254);
-            this.richTextBoxGroup.Multiline = false;
-            this.richTextBoxGroup.Name = "richTextBoxGroup";
-            this.richTextBoxGroup.Size = new System.Drawing.Size(402, 37);
-            this.richTextBoxGroup.TabIndex = 12;
-            this.richTextBoxGroup.Text = "";
+            this.rtbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rtbGroup.Location = new System.Drawing.Point(338, 254);
+            this.rtbGroup.Multiline = false;
+            this.rtbGroup.Name = "rtbGroup";
+            this.rtbGroup.Size = new System.Drawing.Size(402, 37);
+            this.rtbGroup.TabIndex = 12;
+            this.rtbGroup.Text = "";
             // 
             // btnOK
             // 
@@ -96,12 +94,18 @@
             this.ClientSize = new System.Drawing.Size(1149, 463);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.richTextBoxGroup);
+            this.Controls.Add(this.rtbGroup);
             this.Controls.Add(this.lb);
             this.Name = "StudentForm";
             this.Text = "Student";
+            this.Controls.SetChildIndex(this.lbId, 0);
+            this.Controls.SetChildIndex(this.lbLastName, 0);
+            this.Controls.SetChildIndex(this.lbFirstName, 0);
+            this.Controls.SetChildIndex(this.lbMidlName, 0);
+            this.Controls.SetChildIndex(this.rtbLastName, 0);
+            this.Controls.SetChildIndex(this.rtbFirstName, 0);
             this.Controls.SetChildIndex(this.lb, 0);
-            this.Controls.SetChildIndex(this.richTextBoxGroup, 0);
+            this.Controls.SetChildIndex(this.rtbGroup, 0);
             this.Controls.SetChildIndex(this.rtbMiddleName, 0);
             this.Controls.SetChildIndex(this.dtpBirthDate, 0);
             this.Controls.SetChildIndex(this.pictureBoxPhoto, 0);
@@ -118,7 +122,7 @@
         #endregion
 
         private System.Windows.Forms.Label lb;
-        protected System.Windows.Forms.RichTextBox richTextBoxGroup;
+        protected System.Windows.Forms.RichTextBox rtbGroup;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
     }
