@@ -133,8 +133,9 @@ namespace Academy
         {
             StudentForm form = new StudentForm();
             form.ShowDialog();
-            dgvStudents.DataSource = connector.Select(queries[0].ToString());
-            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}: {dgvStudents.RowCount - 1}";
+            tabControl_SelectedIndexChanged(tabControl, null);
+           /* dgvStudents.DataSource = connector.Select(queries[0].ToString());
+            toolStripStatusLabel.Text = $"{statusBarSignatures[0]}: {dgvStudents.RowCount - 1}";*/
 
         }
     }

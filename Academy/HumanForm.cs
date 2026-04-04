@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Academy
 {
@@ -17,11 +18,13 @@ namespace Academy
             InitializeComponent();
         }
 
-        private void Human_Load(object sender, EventArgs e)
-        {
-
-        }
-
        
+
+        private void buttonPhoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog phototDialog = new OpenFileDialog();
+            phototDialog.ShowDialog();
+            pictureBoxPhoto.Image = Image.FromFile(phototDialog.FileName);
+        }
     }
 }
