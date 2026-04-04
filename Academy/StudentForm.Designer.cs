@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.lb = new System.Windows.Forms.Label();
-            this.rtbGroup = new System.Windows.Forms.RichTextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cbGroup = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,16 +52,6 @@
             this.lb.Size = new System.Drawing.Size(116, 32);
             this.lb.TabIndex = 11;
             this.lb.Text = "Группа:";
-            // 
-            // rtbGroup
-            // 
-            this.rtbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rtbGroup.Location = new System.Drawing.Point(338, 254);
-            this.rtbGroup.Multiline = false;
-            this.rtbGroup.Name = "rtbGroup";
-            this.rtbGroup.Size = new System.Drawing.Size(402, 37);
-            this.rtbGroup.TabIndex = 12;
-            this.rtbGroup.Text = "";
             // 
             // btnOK
             // 
@@ -87,14 +77,24 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // cbGroup
+            // 
+            this.cbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbGroup.FormattingEnabled = true;
+            this.cbGroup.Location = new System.Drawing.Point(338, 259);
+            this.cbGroup.Name = "cbGroup";
+            this.cbGroup.Size = new System.Drawing.Size(402, 39);
+            this.cbGroup.TabIndex = 15;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 463);
+            this.Controls.Add(this.cbGroup);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.rtbGroup);
             this.Controls.Add(this.lb);
             this.Name = "StudentForm";
             this.Text = "Student";
@@ -105,7 +105,6 @@
             this.Controls.SetChildIndex(this.rtbLastName, 0);
             this.Controls.SetChildIndex(this.rtbFirstName, 0);
             this.Controls.SetChildIndex(this.lb, 0);
-            this.Controls.SetChildIndex(this.rtbGroup, 0);
             this.Controls.SetChildIndex(this.rtbMiddleName, 0);
             this.Controls.SetChildIndex(this.dtpBirthDate, 0);
             this.Controls.SetChildIndex(this.pictureBoxPhoto, 0);
@@ -113,6 +112,7 @@
             this.Controls.SetChildIndex(this.lbBirthDate, 0);
             this.Controls.SetChildIndex(this.btnOK, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
+            this.Controls.SetChildIndex(this.cbGroup, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,8 +122,8 @@
         #endregion
 
         private System.Windows.Forms.Label lb;
-        protected System.Windows.Forms.RichTextBox rtbGroup;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cbGroup;
     }
 }
