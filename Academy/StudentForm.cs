@@ -27,17 +27,32 @@ namespace Academy
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //DBtools.Connector connector = new DBtools.
-                 // Connector(ConfigurationManager.ConnectionStrings["SPU_411_Import"].ConnectionString);
-                 DataBase.Connector.Insert
-           
+            Academy.Models.Student student = new Models.Student
+                (
+                0,
+                rtbLastName.Text,
+                rtbFirstName.Text,
+                rtbMiddleName.Text,
+                dtpBirthDate.Value.ToString("yyyy-MM-dd"),
+                rtbEmail.Text,
+                rtbPhone.Text,
+                pictureBoxPhoto.Image,
+                Convert.ToInt32  (cbGroup.SelectedValue)
+                );
+            DataBase.Connector.Insert($"INSERT Students({student.GetNames()}) VALUES ({student})");
 
-           // connector.Insert
-               (
-               $"INSERT Students(last_name,first_name,middle_name,birth_date,[group]) " +
-               $"VALUES (N'{rtbLastName.Text}',N'{rtbFirstName.Text}',N'{rtbMiddleName.Text}',N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}'," +
-               $"{cbGroup.SelectedValue})"
-               );
+
+            //DBtools.Connector connector = new DBtools.
+            // Connector(ConfigurationManager.ConnectionStrings["SPU_411_Import"].ConnectionString);
+            /* DataBase.Connector.Insert
+
+
+       // connector.Insert
+           (
+           $"INSERT Students(last_name,first_name,middle_name,birth_date,[group]) " +
+           $"VALUES (N'{rtbLastName.Text}',N'{rtbFirstName.Text}',N'{rtbMiddleName.Text}',N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}'," +
+           $"{cbGroup.SelectedValue})"
+           );*/
         }
     }
 }

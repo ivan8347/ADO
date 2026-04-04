@@ -35,6 +35,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.SuspendLayout();
             // 
+            // dtpBirthDate
+            // 
+            this.dtpBirthDate.Location = new System.Drawing.Point(338, 199);
+            // 
+            // rtbMiddleName
+            // 
+            this.rtbMiddleName.Location = new System.Drawing.Point(338, 152);
+            // 
             // pictureBoxPhoto
             // 
             this.pictureBoxPhoto.Size = new System.Drawing.Size(352, 279);
@@ -43,11 +51,31 @@
             // 
             this.buttonPhoto.Location = new System.Drawing.Point(766, 297);
             // 
+            // rtbFirstName
+            // 
+            this.rtbFirstName.Location = new System.Drawing.Point(338, 105);
+            // 
+            // rtbEmail
+            // 
+            this.rtbEmail.Location = new System.Drawing.Point(338, 343);
+            // 
+            // rtbPhone
+            // 
+            this.rtbPhone.Location = new System.Drawing.Point(338, 296);
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.Location = new System.Drawing.Point(141, 304);
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.Location = new System.Drawing.Point(93, 357);
+            // 
             // lb
             // 
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lb.Location = new System.Drawing.Point(123, 259);
+            this.lb.Location = new System.Drawing.Point(119, 246);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(116, 32);
             this.lb.TabIndex = 11;
@@ -82,7 +110,7 @@
             this.cbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(338, 259);
+            this.cbGroup.Location = new System.Drawing.Point(338, 247);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(402, 39);
             this.cbGroup.TabIndex = 15;
@@ -98,6 +126,10 @@
             this.Controls.Add(this.lb);
             this.Name = "StudentForm";
             this.Text = "Student";
+            this.Controls.SetChildIndex(this.rtbEmail, 0);
+            this.Controls.SetChildIndex(this.rtbPhone, 0);
+            this.Controls.SetChildIndex(this.lblEmail, 0);
+            this.Controls.SetChildIndex(this.lblPhone, 0);
             this.Controls.SetChildIndex(this.lbId, 0);
             this.Controls.SetChildIndex(this.lbLastName, 0);
             this.Controls.SetChildIndex(this.lbFirstName, 0);

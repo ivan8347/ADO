@@ -130,7 +130,6 @@
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStudents.Location = new System.Drawing.Point(-4, 47);
             this.dgvStudents.Name = "dgvStudents";
-            this.dgvStudents.RowHeadersVisible = false;
             this.dgvStudents.RowHeadersWidth = 51;
             this.dgvStudents.RowTemplate.Height = 24;
             this.dgvStudents.Size = new System.Drawing.Size(930, 375);

@@ -28,7 +28,7 @@ namespace Academy.Models
         }
         public override string ToString()
         {
-            return base.ToString() + $"{group}";
+            return base.ToString() + $",{group}";
         }
     }
 }
