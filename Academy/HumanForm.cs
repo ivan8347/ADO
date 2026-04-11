@@ -18,13 +18,14 @@ namespace Academy
             InitializeComponent();
         }
 
-       
+
 
         private void buttonPhoto_Click(object sender, EventArgs e)
         {
-            OpenFileDialog phototDialog = new OpenFileDialog();
-            phototDialog.ShowDialog();
-            pictureBoxPhoto.Image = Image.FromFile(phototDialog.FileName);
+            OpenFileDialog photoDialog = new OpenFileDialog();
+            photoDialog.ShowDialog();
+            if (photoDialog.FileName != "")
+                pictureBoxPhoto.Image = Image.FromFile(photoDialog.FileName);
         }
     }
 }

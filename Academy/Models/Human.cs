@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Academy.Models
 {
-     class Human
+    class Human
     {
         public int id;
         public string last_name;
@@ -37,18 +37,24 @@ namespace Academy.Models
         public byte[] SerializePhoto()
         {
             MemoryStream ms = new MemoryStream();
-            photo.Save(ms,photo.RawFormat);
+            photo.Save(ms, photo.RawFormat);
             return ms.ToArray();
 
         }
 
         public virtual string GetNames()
         {
-           return $"last_name,first_name,middle_name,birth_date,email,phone";
+            return $"last_name,first_name,middle_name,birth_date,email,phone";
         }
         public override string ToString()
         {
             return $"N'{last_name}',N'{first_name}',N'{middle_name}',N'{birth_date}',N'{email}',N'{phone}'";
+
+        }
+        public virtual string ToStringUpdate()
+        {
+            return $"last_name = N'{last_name}',first_name = N'{first_name}', middle_name = N'{middle_name}',birth_date = N'{birth_date}', email = N'{email}',phone = N'{phone}'";
+ 
 
         }
     }

@@ -37,11 +37,11 @@
             // 
             // dtpBirthDate
             // 
-            this.dtpBirthDate.Location = new System.Drawing.Point(338, 199);
+            this.dtpBirthDate.Location = new System.Drawing.Point(338, 148);
             // 
             // rtbMiddleName
             // 
-            this.rtbMiddleName.Location = new System.Drawing.Point(338, 152);
+            this.rtbMiddleName.Location = new System.Drawing.Point(338, 101);
             // 
             // pictureBoxPhoto
             // 
@@ -51,31 +51,55 @@
             // 
             this.buttonPhoto.Location = new System.Drawing.Point(766, 297);
             // 
+            // lbId
+            // 
+            this.lbId.Location = new System.Drawing.Point(186, 353);
+            // 
+            // lbLastName
+            // 
+            this.lbLastName.Location = new System.Drawing.Point(90, 15);
+            // 
+            // lbFirstName
+            // 
+            this.lbFirstName.Location = new System.Drawing.Point(158, 63);
+            // 
+            // lbMidlName
+            // 
+            this.lbMidlName.Location = new System.Drawing.Point(89, 111);
+            // 
+            // rtbLastName
+            // 
+            this.rtbLastName.Location = new System.Drawing.Point(338, 7);
+            // 
             // rtbFirstName
             // 
-            this.rtbFirstName.Location = new System.Drawing.Point(338, 105);
+            this.rtbFirstName.Location = new System.Drawing.Point(338, 54);
+            // 
+            // lbBirthDate
+            // 
+            this.lbBirthDate.Location = new System.Drawing.Point(8, 159);
             // 
             // rtbEmail
             // 
-            this.rtbEmail.Location = new System.Drawing.Point(338, 343);
+            this.rtbEmail.Location = new System.Drawing.Point(338, 235);
             // 
             // rtbPhone
             // 
-            this.rtbPhone.Location = new System.Drawing.Point(338, 296);
+            this.rtbPhone.Location = new System.Drawing.Point(338, 192);
             // 
             // lblEmail
             // 
-            this.lblEmail.Location = new System.Drawing.Point(141, 304);
+            this.lblEmail.Location = new System.Drawing.Point(141, 197);
             // 
             // lblPhone
             // 
-            this.lblPhone.Location = new System.Drawing.Point(93, 357);
+            this.lblPhone.Location = new System.Drawing.Point(93, 240);
             // 
             // lb
             // 
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lb.Location = new System.Drawing.Point(119, 246);
+            this.lb.Location = new System.Drawing.Point(119, 281);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(116, 32);
             this.lb.TabIndex = 11;
@@ -92,7 +116,7 @@
             this.btnOK.TabIndex = 13;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.btnOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // btnCancel
             // 
@@ -110,7 +134,7 @@
             this.cbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(338, 247);
+            this.cbGroup.Location = new System.Drawing.Point(338, 278);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(402, 39);
             this.cbGroup.TabIndex = 15;
